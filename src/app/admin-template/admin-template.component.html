@@ -5,10 +5,10 @@
             <mat-icon>menu</mat-icon> Menu   <!-- Mais ícones: https://fonts.google.com/icons -->
         </button>
         <span style="flex: auto"></span>     <!-- coloca os outros botões (Home e Perfil) no canto superior direito -->
-        <button mat-button>
+        <button mat-button routerLink="/home">
             <mat-icon>home</mat-icon> Home
         </button>
-        <button mat-button>
+        <button mat-button routerLink="/profile">
             <mat-icon>person</mat-icon> Perfil
         </button>
         <button mat-button [matMenuTriggerFor]="importMenu"> <!-- matMenuTriggerFor é usado para ligar o botão ao menu -->
@@ -16,11 +16,11 @@
         </button>
 
         <mat-menu #importMenu>
-            <button mat-menu-item>Carregar Estudantes</button>
-            <button mat-menu-item>Carregar Pagamentos</button>
+            <button mat-menu-item routerLink="/loadEstudantes">Carregar Estudantes</button>
+            <button mat-menu-item routerLink="/loadPagamentos">Carregar Pagamentos</button>
         </mat-menu>
 
-        <button mat-raised-button class="btn-sair">Sair</button>
+        <button mat-raised-button class="btn-sair" routerLink="/login">Sair</button>
     </mat-toolbar-row>
 </mat-toolbar>
 
@@ -29,23 +29,25 @@
     <mat-drawer opened="true" mode="side" position="start">  <!-- opened="true": começa aberto. | mode="side": empurra o conteúdo ao lado. | position="start": aparece à esquerda. -->
         <mat-list>
             <mat-list-item>
-                <button mat-button >
+                <button mat-button routerLink="/dashboard">
                     <mat-icon>dashboard</mat-icon> Dashboard
                 </button>
             </mat-list-item>
             <mat-list-item>
-                <button mat-button >
+                <button mat-button routerLink="/estudantes">
                     <mat-icon>school</mat-icon> Estudantes
                 </button>
             </mat-list-item>
             <mat-list-item>
-                <button mat-button >
+                <button mat-button routerLink="/pagamentos">
                     <mat-icon>payment</mat-icon> Pagamentos
                 </button>
             </mat-list-item>
         </mat-list>
     </mat-drawer>
     <mat-drawer-content>
-        <div style="min-height: 600px;"></div>
+        <div style="min-height: 600px;">
+            <router-outlet></router-outlet> <!-- O router-outlet é o local onde o conteúdo do componente filho será exibido. -->       
+        </div>
     </mat-drawer-content>
 </mat-drawer-container>
