@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AdminTemplateComponent } from './admin-template/admin-template.component';
+import { AppMaterialModule } from './angular-material/app-material.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { AdminTemplateComponent } from './admin-template/admin-template.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AppMaterialModule
   ],
   providers: [
     provideAnimationsAsync()

@@ -1,0 +1,23 @@
+
+.btn-sair {
+    
+    background-color: #3f51b5 !important;
+    color: white !important; // muda a cor do texto para branco
+    border-radius: 10cap;
+    border-color: black !important;
+    border-width: 5cap;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: 10px;
+    transition: color 0.3s ease; // suaviza a transição de cor
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5); /* Sombra adicionada */
+}
+
+.btn-sair:hover {
+    background-color: white !important;
+    color: #3f51b5 !important; // muda a cor do texto para branco ao passar o mouse
+    border-radius: 10cap;
+    font-weight: bold;           // opcional: deixa o texto em negrito
+    font-size: 0.9rem;
+    box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.7); /* Sombra mais forte no hover */
+}
