@@ -10,6 +10,7 @@ import { EstudantesComponent } from './estudantes/estudantes.component';
 import { PagamentosComponent } from './pagamentos/pagamentos.component';
 
 const routes: Routes = [
+  { path: '', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },

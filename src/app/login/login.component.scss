@@ -1,0 +1,49 @@
+.container {
+   width: 100%;          /* ocupa toda a largura */
+   position: relative;   /* para usar top */
+   margin: 0 auto;       /* centraliza horizontalmente */
+   top: 100px;           /* afasta do topo para ficar mais abaixo */
+   max-width: 500px;     /* limita a largura do container */
+}
+
+mat-form-field {
+    display: block; // vai deixar o campo de login e senha em linha
+    margin-bottom: 10px; // espaçamento entre os campos
+}
+
+.login-form {
+    width: 500px; // largura do formulário
+    flex: auto; // ocupa o espaço disponível
+    align-content: center; // alinha o conteúdo no centro
+    margin: 0 auto; // centraliza o formulário na tela
+    padding: 20px; // espaçamento interno do formulário
+}
+
+mat-card-title {
+    padding-right: 65px; // espaçamento automático
+    font-size: 24px; // tamanho da fonte do título
+    text-align: center; // centraliza o texto do título
+}
+
+mat-card-subtitle {
+    font-size: 16px; // tamanho da fonte do subtítulo
+    text-align: center; // centraliza o texto do subtítulo
+    padding-bottom: 10px; // espaçamento abaixo do subtítulo
+}
+
+.login-icon {
+    margin-right: 0 auto; // centraliza a imagem
+}
+
+.align-end {
+    display: flex; // usa flexbox para alinhar os itens
+    justify-content: flex-end; // alinha os itens à direita
+}
+
+button {
+    margin-top: 10px; // espaçamento acima do botão
+    width: 100%; // largura total do botão
+    background-color: #3f51b5; // cor de fundo do botão
+    color: white; // cor do texto do botão
+    font-size: 16px; // tamanho da fonte do botão
+}
