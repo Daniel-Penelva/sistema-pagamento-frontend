@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
         <span class="spacer"></span>
-        <button mat-button>
+        <button mat-button (click)="myDrawer.toggle()"> <!-- O botão vai abrir e fechar o menu lateral. O método toggle() é um método do componente Drawer que abre e fecha o menu. -->
             <mat-icon>menu</mat-icon> Menu   <!-- Mais ícones: https://fonts.google.com/icons -->
         </button>
         <span style="flex: auto"></span>     <!-- coloca os outros botões (Home e Perfil) no canto superior direito -->
@@ -26,7 +26,7 @@
 
 <!-- Menu lateral para o lado esquerdo -->
 <mat-drawer-container>
-    <mat-drawer opened="true" mode="side" position="start">  <!-- opened="true": começa aberto. | mode="side": empurra o conteúdo ao lado. | position="start": aparece à esquerda. -->
+    <mat-drawer #myDrawer opened="true" mode="side" position="start">  <!-- opened="true": começa aberto. | mode="side": empurra o conteúdo ao lado. | position="start": aparece à esquerda. | #myDrawer: é o nome do componente Drawer -->
         <mat-list>
             <mat-list-item>
                 <button mat-button routerLink="/dashboard">
