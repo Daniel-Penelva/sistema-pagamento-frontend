@@ -1,5 +1,5 @@
 <div class="container">
-    <mat-card class="login-form">
+    <mat-card class="login-form" [formGroup]="loginForm"> <!-- Está diretiva [formGroup] vincula o formulário HTML com um objeto do FormGroup definido em TypeScript -->
         <mat-card-header>         
             <mat-card-title>Autenticação</mat-card-title>
             <mat-card-subtitle>Entre com seu e-mail e senha</mat-card-subtitle>
@@ -9,15 +9,31 @@
         <mat-card-content>
             <mat-form-field appearance="outline">
                 <mat-label>E-mail</mat-label>
-                <input matInput>
+                <input matInput formControlName="username" type="email"> <!-- formControlName é uma diretiva que se utiliza dentro de um formulário reativo para vincular um controle HTML -->
+
+                <mat-error>
+                    <ng-container *ngIf="loginForm.get('username')?.hasError('required')"> <!-- O *ngIf é uma diretiva estrutural que altera o layout do DOM -->
+                        O campo e-mail é obrigatório.
+                    </ng-container>
+                    <ng-container *ngIf="loginForm.get('username')?.hasError('email')">
+                        O campo e-mail deve ser um endereço de e-mail válido.
+                    </ng-container>
+                </mat-error>
             </mat-form-field>
+
             <mat-form-field appearance="outline">
                 <mat-label>Senha</mat-label>
-                <input matInput type="password">
+                <input matInput formControlName="password" type="password">
+
+                <mat-error>
+                    <ng-container *ngIf="loginForm.get('password')?.hasError('required')">
+                        O campo senha é obrigatório.
+                    </ng-container>
+                </mat-error>
             </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button color="primary">Acessar</button>
+            <button mat-raised-button color="primary" (click)="login()" [disabled]="loginForm.invalid">Acessar</button>
         </mat-card-actions>
     </mat-card>
 </div>
