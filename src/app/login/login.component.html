@@ -2,21 +2,21 @@
     <mat-card class="login-form" [formGroup]="loginForm"> <!-- Está diretiva [formGroup] vincula o formulário HTML com um objeto do FormGroup definido em TypeScript -->
         <mat-card-header>         
             <mat-card-title>Autenticação</mat-card-title>
-            <mat-card-subtitle>Entre com seu e-mail e senha</mat-card-subtitle>
+            <mat-card-subtitle>Entre com seu username e senha</mat-card-subtitle>
             <mat-icon class="login-icon">lock</mat-icon>
         </mat-card-header>
         <mat-divider></mat-divider>
         <mat-card-content>
             <mat-form-field appearance="outline">
-                <mat-label>E-mail</mat-label>
-                <input matInput formControlName="username" type="email"> <!-- formControlName é uma diretiva que se utiliza dentro de um formulário reativo para vincular um controle HTML -->
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username"> <!-- formControlName é uma diretiva que se utiliza dentro de um formulário reativo para vincular um controle HTML -->
 
                 <mat-error>
                     <ng-container *ngIf="loginForm.get('username')?.hasError('required')"> <!-- O *ngIf é uma diretiva estrutural que altera o layout do DOM -->
-                        O campo e-mail é obrigatório.
+                        O campo username é obrigatório.
                     </ng-container>
-                    <ng-container *ngIf="loginForm.get('username')?.hasError('email')">
-                        O campo e-mail deve ser um endereço de e-mail válido.
+                    <ng-container *ngIf="loginForm.get('username')?.hasError('minLength')">
+                        O campo username deve ter no mínimo 3 caracteres.
                     </ng-container>
                 </mat-error>
             </mat-form-field>
@@ -45,5 +45,14 @@
         <mat-card-actions>
             <button mat-raised-button color="primary" (click)="login()" [disabled]="loginForm.invalid">Acessar</button>
         </mat-card-actions>
+
+        <mat-error *ngIf="loginInvalido">
+                Usuário ou senha inválidos.
+        </mat-error>
+
+        <mat-card-footer>
+            <mat-icon class="login-icon">info</mat-icon>
+            <span>Não possui uma conta? <a routerLink="/">Cadastre-se</a></span>
+        </mat-card-footer>
     </mat-card>
 </div>

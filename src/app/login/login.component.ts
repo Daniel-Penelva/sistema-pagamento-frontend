@@ -1,5 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +14,14 @@ export class LoginComponent implements OnInit{
   
   showPassword = signal(true);    // Estado reativo para controlar a visibilidade da senha
 
-  constructor(private formBuilder: FormBuilder){}
+  loginInvalido: boolean = false;
+
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router){}
 
   // Ao carregar o componente, inicializa o formulário com os campos username e password e defines os valores iniciais como vazios
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', Validators.required]
     });
   }
@@ -27,6 +31,15 @@ export class LoginComponent implements OnInit{
     let password = this.loginForm.get('password')?.value;
     console.log(username);
     console.log(password);
+
+    let auth: boolean = this.authService.login(username, password); // Chama o método de login do AuthService
+    if (auth) {
+      console.log('Login bem-sucedido');   // Exibir mensagem de sucesso
+      this.router.navigateByUrl('/admin'); // Redirecionar para a página administrativa
+    } else {
+      console.log('Login falhou');  // Exibir mensagem de erro
+      this.loginInvalido = true;
+    }
   }
 
   // Método para funcionalidade mostrar/ocultar senha

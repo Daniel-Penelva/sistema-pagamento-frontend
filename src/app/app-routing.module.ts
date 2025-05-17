@@ -8,6 +8,7 @@ import { LoadEstudantesComponent } from './load-estudantes/load-estudantes.compo
 import { LoadPagamentosComponent } from './load-pagamentos/load-pagamentos.component';
 import { EstudantesComponent } from './estudantes/estudantes.component';
 import { PagamentosComponent } from './pagamentos/pagamentos.component';
+import { AdminTemplateComponent } from './admin-template/admin-template.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'loadPagamentos', component: LoadPagamentosComponent },
   { path: 'estudantes', component: EstudantesComponent },
   { path: 'pagamentos', component: PagamentosComponent },
+  { path: 'admin', component: AdminTemplateComponent },
 ];
 
 @NgModule({
