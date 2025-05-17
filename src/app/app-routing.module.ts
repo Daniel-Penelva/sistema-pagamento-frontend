@@ -12,19 +12,22 @@ import { AdminTemplateComponent } from './admin-template/admin-template.componen
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'loadEstudantes', component: LoadEstudantesComponent },
-  { path: 'loadPagamentos', component: LoadPagamentosComponent },
-  { path: 'estudantes', component: EstudantesComponent },
-  { path: 'pagamentos', component: PagamentosComponent },
-  { path: 'admin', component: AdminTemplateComponent },
+  {
+    path: 'admin', component: AdminTemplateComponent, children: [
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'home', component: HomeComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'loadEstudantes', component: LoadEstudantesComponent },
+      { path: 'loadPagamentos', component: LoadPagamentosComponent },
+      { path: 'estudantes', component: EstudantesComponent },
+      { path: 'pagamentos', component: PagamentosComponent },
+    ]
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
