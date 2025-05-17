@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,6 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit{
 
   public loginForm!: FormGroup;
+  
+  showPassword = signal(true);    // Estado reativo para controlar a visibilidade da senha
 
   constructor(private formBuilder: FormBuilder){}
 
@@ -25,6 +27,12 @@ export class LoginComponent implements OnInit{
     let password = this.loginForm.get('password')?.value;
     console.log(username);
     console.log(password);
+  }
+
+  // Método para funcionalidade mostrar/ocultar senha
+  togglePasswordVisibility(mouseEvent: MouseEvent) {
+    this.showPassword.set(!this.showPassword());      // Alterna o estado
+    mouseEvent.stopPropagation();                     // Impede a propagação do evento
   }
 
 }

@@ -47,3 +47,14 @@ button {
     color: white; // cor do texto do botão
     font-size: 16px; // tamanho da fonte do botão
 }
+
+/* SCCS customização do olho de visibilidade do password */
+.password-toggle {
+    position: absolute; // posição absoluta para o ícone
+    right: 10px; // distância da direita
+    top: -6px;
+    transform: translateY(-50%); // ajusta a posição vertical
+    cursor: pointer; // muda o cursor para indicar que é clicável
+    background-color: transparent; // fundo transparente
+    color: black;
+}

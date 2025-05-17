@@ -23,7 +23,17 @@
 
             <mat-form-field appearance="outline">
                 <mat-label>Senha</mat-label>
-                <input matInput formControlName="password" type="password">
+                <input matInput [type]="showPassword() ? 'password' : 'text'" autocomplete="off" formControlName="password" type="password">
+                <!-- Funcionalidade para visualizar ou não visualizar senha -->
+                <button 
+                    class="password-toggle"
+                    mat-icon-button 
+                    matSuffix 
+                    (click)="togglePasswordVisibility($event)" 
+                    [attr.aria-label]="showPassword() ? 'Ocultar senha' : 'Mostrar senha'"
+                    [attr.aria-pressed]="showPassword()">                                       <!-- matSuffix posiciona o botão dentro do campo de entrada. | aria-label e aria-pressed garantem acessibilidade, permitindo que leitores de tela interpretem a função do botão. -->
+                    <mat-icon>{{ showPassword() ? 'visibility' : 'visibility_off' }}</mat-icon> <!-- O mat-icon muda dinamicamente entre visibility (olhinho aberto) e visibility_off (olhinho fechado). -->
+                </button>
 
                 <mat-error>
                     <ng-container *ngIf="loginForm.get('password')?.hasError('required')">
