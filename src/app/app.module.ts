@@ -15,6 +15,7 @@ import { PagamentosComponent } from './pagamentos/pagamentos.component';
 import { EstudantesComponent } from './estudantes/estudantes.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
