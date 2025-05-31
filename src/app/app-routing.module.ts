@@ -10,6 +10,7 @@ import { EstudantesComponent } from './estudantes/estudantes.component';
 import { PagamentosComponent } from './pagamentos/pagamentos.component';
 import { AdminTemplateComponent } from './admin-template/admin-template.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AuthorizationGuard } from './guards/authorization.guard';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -19,8 +20,8 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'home', component: HomeComponent },
       { path: 'profile', component: ProfileComponent },
-      { path: 'loadEstudantes', component: LoadEstudantesComponent },
-      { path: 'loadPagamentos', component: LoadPagamentosComponent },
+      { path: 'loadEstudantes', component: LoadEstudantesComponent, canActivate: [AuthorizationGuard], data: {roles: ['ADMIN']} },
+      { path: 'loadPagamentos', component: LoadPagamentosComponent, canActivate: [AuthorizationGuard], data: {roles: ['ADMIN']} },
       { path: 'estudantes', component: EstudantesComponent },
       { path: 'pagamentos', component: PagamentosComponent },
     ]
@@ -28,6 +29,7 @@ const routes: Routes = [
 ];
 
 // canActivate: [AuthGuard] é usado para proteger as rotas, garantindo que apenas usuários autenticados possam acessá-las.
+// canActivate: [AuthorizationGuard], data: {roles: ['ADMIN']} é usado para proteger as rotas, garantindo que apenas usuários com o papel de ADMIN possam acessá-las.
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -16,6 +16,7 @@ import { EstudantesComponent } from './estudantes/estudantes.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/auth.guard';
+import { AuthorizationGuard } from './guards/authorization.guard';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AuthGuard } from './guards/auth.guard';
   ],
   providers: [
     provideAnimationsAsync(),
-    AuthGuard
+    AuthGuard,
+    AuthorizationGuard,
   ],
   bootstrap: [AppComponent]
 })
