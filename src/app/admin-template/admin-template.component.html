@@ -11,7 +11,7 @@
         <button mat-button routerLink="/admin/profile">
             <mat-icon>person</mat-icon> Perfil
         </button>
-        <button mat-button [matMenuTriggerFor]="importMenu"> <!-- matMenuTriggerFor é usado para ligar o botão ao menu -->
+        <button mat-button *ngIf="authService.roles.includes('ADMIN')" [matMenuTriggerFor]="importMenu"> <!-- matMenuTriggerFor é usado para ligar o botão ao menu -->
             <mat-icon iconPositionEnd>keyboard_arrow_down</mat-icon> Importar
         </button>
 
