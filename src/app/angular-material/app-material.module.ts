@@ -10,6 +10,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
     declarations: [],
@@ -27,6 +30,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         MatFormFieldModule,
         MatInputModule,
         MatSnackBarModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
     ]
 })
 export class AppMaterialModule { }
