@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Pagamento } from '../model/Pagamento';
 
 @Component({
   selector: 'app-pagamentos',
@@ -12,9 +13,9 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class PagamentosComponent {
 
-  public pagamentos: any;
-  public dataSource: any;
-  public displayedColumns = ['id', 'data', 'valor', 'tipoPagamento', 'pagamentoStatus', 'nome'];
+  public pagamentos: Pagamento[] = [];               // Inicializa a lista de pagamentos como um array vazio
+  public dataSource!: MatTableDataSource<Pagamento>; // MatTableDataSource é uma fonte de dados para tabelas do Angular Material 
+  public displayedColumns = ['id', 'data', 'valor', 'tipoPagamento', 'pagamentoStatus', 'nome'];  // Este array serve apenas para o Angular Material Table saber quais colunas renderizar.
 
   /* @ViewChild é um decorador de propriedades que configura uma consulta de visualização. O detector de alterações procura o primeiro elemento 
    * ou a diretiva correspondente ao seletor no DOM da visualização. Se o DOM da visualização for alterado e um novo filho corresponder ao seletor, 

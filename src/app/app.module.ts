@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthorizationGuard } from './guards/authorization.guard';
 import { HttpClientModule } from '@angular/common/http';
+import { EnumFormatPipe } from './pipe/enum-format.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     PagamentosComponent,
     EstudantesComponent,
-    DashboardComponent
+    DashboardComponent,
+    EnumFormatPipe,
   ],
   imports: [
     BrowserModule,

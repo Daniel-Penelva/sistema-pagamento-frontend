@@ -1,0 +1,6 @@
+export enum TipoPagamento {
+  DINHEIRO = 'DINHEIRO',
+  CHEQUE = 'CHEQUE',
+  TRANSFERENCIA = 'TRANSFERENCIA',
+  DEPOSITO = 'DEPOSITO',
+}
