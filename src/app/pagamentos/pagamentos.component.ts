@@ -1,17 +1,18 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Pagamento } from '../model/Pagamento';
+import { EstudantesService } from '../services/estudantes.service';
 
 @Component({
   selector: 'app-pagamentos',
   templateUrl: './pagamentos.component.html',
   styleUrl: './pagamentos.component.scss'
 })
-export class PagamentosComponent {
+export class PagamentosComponent implements OnInit{
 
   public pagamentos: Pagamento[] = [];               // Inicializa a lista de pagamentos como um array vazio
   public dataSource!: MatTableDataSource<Pagamento>; // MatTableDataSource é uma fonte de dados para tabelas do Angular Material 
@@ -28,15 +29,19 @@ export class PagamentosComponent {
 
   public isLoading: boolean = true; // Variável para controlar o estado de carregamento
 
-  constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) {}
+  constructor(private httpClient: HttpClient, private snackBar: MatSnackBar, private estudantesService: EstudantesService) {}
 
   ngOnInit(): void {
-    this.httpClient.get('http://localhost:8080/pagamentos').subscribe({
+    this.estudantesService.getAllPagamentos().subscribe({
       next: (data: any) => {
         this.pagamentos = data;                                     // Atribui os dados recebidos à variável pagamentos
         this.dataSource = new MatTableDataSource(this.pagamentos);  // Cria uma nova instância de MatTableDataSource com os pagamentos
-        this.dataSource.paginator = this.paginator;                 // Define o paginator para a dataSource
-        this.dataSource.sort = this.sort;                           // Define o sort para a dataSource
+        
+        // Aguarda o ciclo de renderização para garantir que sort e paginator existam
+        setTimeout(() => {
+          this.dataSource.sort = this.sort;           // Define o sort para a dataSource
+          this.dataSource.paginator = this.paginator; // Define o paginator para a dataSource
+        });
 
         this.isLoading = false;                                    // Define isLoading como false após os dados serem carregados
       }, 
