@@ -19,4 +19,8 @@ export class EstudantesService {
   public getAllEstudantes(): Observable<Array<Estudante>> {
     return this.httpClient.get<Array<Estudante>>(`${environment.backendHost}/estudantes`);
   }
+
+  public getPagamentoDeEstudantes(codigo: string): Observable<Array<Pagamento>> {
+    return this.httpClient.get<Array<Pagamento>>(`${environment.backendHost}/estudantes/${codigo}/pagamentos`);
+  }
 }

@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-estudantes',
@@ -16,7 +17,7 @@ export class EstudantesComponent implements OnInit{
   estudantes!: Array<Estudante>;
 
   public dataSource!: MatTableDataSource<Estudante>; // MatTableDataSource é uma fonte de dados para tabelas do Angular Material 
-  public displayedColumns = ['id', 'nome', 'sobrenome', 'codigo', 'programaId'];
+  public displayedColumns = ['id', 'nome', 'sobrenome', 'codigo', 'programaId', 'pagamento'];
 
   /* @ViewChild é um decorador de propriedades que configura uma consulta de visualização. O detector de alterações procura o primeiro elemento 
    * ou a diretiva correspondente ao seletor no DOM da visualização. Se o DOM da visualização for alterado e um novo filho corresponder ao seletor, 
@@ -24,12 +25,12 @@ export class EstudantesComponent implements OnInit{
    * MatPaginator é o componente para navegação entre informações paginadas.  */
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   
-    /* Contêiner para MatSortables para gerenciar o estado de classificação e fornecer parâmetros de classificação padrão.  */
-    @ViewChild(MatSort) sort!: MatSort;
+  /* Contêiner para MatSortables para gerenciar o estado de classificação e fornecer parâmetros de classificação padrão.  */
+  @ViewChild(MatSort) sort!: MatSort;
 
   public isLoading: boolean = true; // Variável para controlar o estado de carregamento
 
-  constructor(private estudantesService: EstudantesService, private snackBar: MatSnackBar) {}
+  constructor(private estudantesService: EstudantesService, private snackBar: MatSnackBar, private router: Router) {}
 
   ngOnInit(): void {
       this.estudantesService.getAllEstudantes().subscribe({
@@ -51,6 +52,10 @@ export class EstudantesComponent implements OnInit{
           this.snackBar.open('Erro ao carregar estudantes', 'Fechar', { duration: 5000 });
         }
       });
+  }
+
+  listarPagamentosEstudantes(estudante: Estudante) {
+    this.router.navigateByUrl(`/admin/estudante-detalhes/${estudante.codigo}`);
   }
 
 }

@@ -19,6 +19,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AuthorizationGuard } from './guards/authorization.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { EnumFormatPipe } from './pipe/enum-format.pipe';
+import { EstudanteDetailsComponent } from './estudante-details/estudante-details.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { EnumFormatPipe } from './pipe/enum-format.pipe';
     EstudantesComponent,
     DashboardComponent,
     EnumFormatPipe,
+    EstudanteDetailsComponent,
   ],
   imports: [
     BrowserModule,
