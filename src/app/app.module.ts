@@ -20,6 +20,7 @@ import { AuthorizationGuard } from './guards/authorization.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { EnumFormatPipe } from './pipe/enum-format.pipe';
 import { EstudanteDetailsComponent } from './estudante-details/estudante-details.component';
+import { NewPagamentoComponent } from './new-pagamento/new-pagamento.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { EstudanteDetailsComponent } from './estudante-details/estudante-details
     DashboardComponent,
     EnumFormatPipe,
     EstudanteDetailsComponent,
+    NewPagamentoComponent,
   ],
   imports: [
     BrowserModule,

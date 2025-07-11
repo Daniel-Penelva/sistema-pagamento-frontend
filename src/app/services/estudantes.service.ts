@@ -23,4 +23,8 @@ export class EstudantesService {
   public getPagamentoDeEstudantes(codigo: string): Observable<Array<Pagamento>> {
     return this.httpClient.get<Array<Pagamento>>(`${environment.backendHost}/estudantes/${codigo}/pagamentos`);
   }
+
+  public criarPagamento(formData: any): Observable<Pagamento> {
+    return this.httpClient.post<Pagamento>(`${environment.backendHost}/pagamento`, formData);
+  }
 }

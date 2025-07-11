@@ -1,0 +1,88 @@
+<div class="container">
+    <mat-card [formGroup]="pagamentoFormGroup" class="pagamento-form">
+        <mat-toolbar color="primary">
+            <span>Adicionar Pagamento</span>
+        </mat-toolbar>
+        <mat-card-content>
+            <form>
+                <!-- Formulário para adicionar pagamento -->
+                <mat-form-field appearance="outline">
+                    <mat-label>Valor</mat-label>
+                    <input matInput type="number" formControlName="valor">
+
+                    <mat-error>
+                        <ng-container *ngIf="pagamentoFormGroup.get('valor')?.hasError('required')">
+                            O campo valor é obrigatório.
+                        </ng-container>
+                        <ng-container *ngIf="pagamentoFormGroup.get('valor')?.hasError('min')">
+                            O valor deve ser maior que zero.
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Data de Vencimento</mat-label>
+                    <mat-hint>DD/MM/YYYY</mat-hint>
+                    <input matInput [matDatepicker]="picker" formControlName="data" required>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker> <!-- Datepicker para selecionar a data. -->
+
+                    <mat-error>
+                        <ng-container *ngIf="pagamentoFormGroup.get('data')?.hasError('required')">
+                            O campo data é obrigatório.
+                        </ng-container>
+                        <!--
+                        <ng-container *ngIf="pagamentoFormGroup.get('data')?.hasError('matDatepickerParse')">
+                            Data inválida. Use o formato DD/MM/YYYY.
+                        </ng-container>
+                        -->
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Tipo de Pagamento</mat-label>
+                    <mat-select formControlName="tipoPagamento" required>
+                        <mat-option *ngFor="let tp of tipoPagamento" [value]="tp">{{ tp }}</mat-option>
+                    </mat-select>
+
+                    <mat-error>
+                        <ng-container *ngIf="pagamentoFormGroup.get('tipoPagamento')?.hasError('required')">
+                            O campo tipo de pagamento é obrigatório.
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Código do Estudante</mat-label>
+                    <input matInput formControlName="codigoEstudante" [disabled]="true">
+                </mat-form-field>
+
+                <!-- Upload de arquivo com estilo Material -->
+                <div class="file-upload">
+                    <button mat-raised-button color="accent" (click)="fileInput.click()">
+                        <mat-icon>attach_file</mat-icon> Selecionar Arquivo
+                    </button>
+                
+                    <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" hidden/>
+
+                    <!-- Exibe o nome do arquivo e botão para remover -->
+                    <div *ngIf="selectedFileName" class="file-info">
+                        <span>{{ selectedFileName }}</span>
+                        <button mat-icon-button color="warn" (click)="removeFile()" aria-label="Remover arquivo">
+                        <mat-icon>close</mat-icon>
+                        </button>
+                    </div>
+
+                    <!-- Preview da imagem -->
+                    <img *ngIf="selectedImage" [src]="selectedImage" class="preview-image" alt="Preview da imagem" />
+
+                    <mat-error *ngIf="pagamentoFormGroup.get('file')?.hasError('required') && pagamentoFormGroup.get('file')?.touched">
+                        O arquivo é obrigatório.
+                    </mat-error>
+                </div>
+
+                <button mat-raised-button color="primary" (click)="criarPagamento()" [disabled]="pagamentoFormGroup.invalid">Salvar</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,76 @@
+.container {
+  max-width: 700px;
+  margin: 32px auto;
+  padding: 16px;
+}
+
+.pagamento-form {
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  background-color: #fff;
+}
+
+mat-toolbar {
+  border-radius: 8px 8px 0 0;
+  margin: -24px -24px 24px -24px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.file-upload {
+  margin-top: 16px;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.preview-image {
+  margin-top: 12px;
+  max-width: 100%;
+  max-height: 250px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+button[type="submit"],
+button[color="primary"] {
+  margin-top: 20px;
+  width: 100%;
+  font-weight: bold;
+}
+
+mat-error {
+  color: #f44336;
+  font-size: 13px;
+}
+
+/* Esconde o input de arquivo */
+input[type="file"] {
+  display: none;
+}
+
+/* Responsivo para celular */
+@media (max-width: 600px) {
+  .container {
+    padding: 8px;
+  }
+
+  .pagamento-form {
+    padding: 16px;
+  }
+
+  mat-toolbar span {
+    font-size: 16px;
+  }
+}

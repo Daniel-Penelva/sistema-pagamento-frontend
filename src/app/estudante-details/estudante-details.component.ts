@@ -4,7 +4,7 @@ import { Pagamento } from '../model/Pagamento';
 import { MatTableDataSource } from '@angular/material/table';
 import { EstudantesService } from '../services/estudantes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
@@ -35,7 +35,8 @@ export class EstudanteDetailsComponent implements OnInit{
   constructor(
     private estudanteService: EstudantesService, 
     private snackBar: MatSnackBar, 
-    private activatedRoute: ActivatedRoute) {}
+    private activatedRoute: ActivatedRoute, 
+    private router: Router ) {}
 
   // O método ngOnInit é chamado quando o componente é inicializado
   // A funcionaldiade deste método é buscar os pagamentos do estudante com base no código do estudante obtido da rota ativa, se não houver pagamentos, exibe uma mensagem de erro
@@ -66,6 +67,10 @@ export class EstudanteDetailsComponent implements OnInit{
         this.snackBar.open('Erro ao carregar os pagamentos do estudante', 'Fechar', { duration: 3000, panelClass: ['red-snackbar']});
       }
     });
+  }
+
+  addPagamento() {
+    this.router.navigateByUrl(`/admin/new-pagamento/${this.estudanteCodigo}`);
   }
 
 }
