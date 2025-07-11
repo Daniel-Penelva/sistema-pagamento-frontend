@@ -93,12 +93,16 @@ criarPagamento(): void {
       this.pagamentoFormGroup.get('file')?.markAsTouched();   // Marca o campo 'file' como tocado para que as validações sejam aplicadas.
 
       // Exibe preview da imagem (se for imagem)
-      const reader = new FileReader();                       // Cria um novo FileReader para ler o conteúdo do arquivo.
-      reader.onload = () => {                                // Define o que acontece quando a leitura do arquivo é concluída. 
-        this.selectedImage = reader.result;                  // Armazena o resultado da leitura (que pode ser uma URL de dados) na variável selectedImage.
-      };
-      reader.readAsDataURL(file);                            // Lê o arquivo como uma URL de dados (data URL), que é uma representação do arquivo em formato base64.
-      console.log('Arquivo selecionado:', file);             // Exibe o arquivo selecionado no console para depuração.
+      if (file.type.startsWith('image/')){                     // Verifica se o arquivo selecionado é uma imagem.
+        const reader = new FileReader();                       // Cria um novo FileReader para ler o conteúdo do arquivo.
+        reader.onload = () => {                                // Define o que acontece quando a leitura do arquivo é concluída. 
+          this.selectedImage = reader.result;                  // Armazena o resultado da leitura (que pode ser uma URL de dados) na variável selectedImage.
+        };
+        reader.readAsDataURL(file);                            // Inicia a leitura do arquivo como um array de bytes.
+      } else {
+        this.selectedImage = null;                             // Se não for imagem, não tenta exibir preview
+      }                            
+      console.log('Arquivo selecionado:', file);               // Exibe o arquivo selecionado no console para depuração.
     }
   }
 

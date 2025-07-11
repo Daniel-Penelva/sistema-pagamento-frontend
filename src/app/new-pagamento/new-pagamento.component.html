@@ -22,7 +22,7 @@
 
                 <mat-form-field appearance="outline">
                     <mat-label>Data de Vencimento</mat-label>
-                    <mat-hint>DD/MM/YYYY</mat-hint>
+                    <mat-hint>MM/DD/YYYY</mat-hint>
                     <input matInput [matDatepicker]="picker" formControlName="data" required>
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker> <!-- Datepicker para selecionar a data. -->
@@ -63,7 +63,7 @@
                         <mat-icon>attach_file</mat-icon> Selecionar Arquivo
                     </button>
                 
-                    <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" hidden/>
+                    <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*, .pdf" hidden/>
 
                     <!-- Exibe o nome do arquivo e botão para remover -->
                     <div *ngIf="selectedFileName" class="file-info">
@@ -75,6 +75,11 @@
 
                     <!-- Preview da imagem -->
                     <img *ngIf="selectedImage" [src]="selectedImage" class="preview-image" alt="Preview da imagem" />
+
+                    <!-- Ícone de PDF -->
+                    <div *ngIf="selectedFileName && !selectedImage && selectedFileName.endsWith('.pdf')" class="pdf-preview">
+                        <mat-icon>picture_as_pdf</mat-icon> Arquivo PDF selecionado
+                    </div>
 
                     <mat-error *ngIf="pagamentoFormGroup.get('file')?.hasError('required') && pagamentoFormGroup.get('file')?.touched">
                         O arquivo é obrigatório.
